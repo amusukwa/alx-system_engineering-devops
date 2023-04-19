@@ -1,2 +1,2 @@
 #!/bin/bash
-cat -c 1 |paste -s -d  ''  
+cut -c1 | paste -s | tr -d "[:blank:]"
