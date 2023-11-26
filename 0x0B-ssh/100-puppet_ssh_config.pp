@@ -1,10 +1,19 @@
 # ssh_config.pp
 
-file { '/home/ubuntu/.ssh/config':
-  ensure  => 'file',
-  mode    => '0600',
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  content => template('ssh/config.erb'),
+file { '/etc/ssh/ssh_config':
+  ensure  => 'present',
 }
 
+file_line { 'Turn off password auth':
+ path  => '/etc/ssh/ssh_config',
+ line    => 'PasswordAuthentication no',
+ match   => '#PasswordAuthentication ',
+  
+}
+
+file_line { 'Declare identify file':
+ path  => '/etc/.ssh/ssh_config',
+ line    => 'IdentifyFile ~/.ssh/shool',
+ match   => '#PasswordAuthentication ',
+  
+}
