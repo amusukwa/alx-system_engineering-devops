@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+
+sudo apt-get update -y
+sudo apt-get install -y nginx
+
+
+sudo sed -i 's/\blisten\b.*/listen 80;/g' /etc/nginx/sites-available/default
+
+
+sudo /etc/init.d/nginx restart
+
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+echo "Web server configured successfully. Nginx is now listening on port 80."
