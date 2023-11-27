@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Install nginx if not already installed
+sudo apt-get update
+sudo apt-get install -y nginx
+
+sudo sed -i '38s#.*#        location /redirect_me {\n            return 301 http://www.redirected.com;\n        }#' /etc/nginx/sites-available/default
+
+sudo service nginx reload
