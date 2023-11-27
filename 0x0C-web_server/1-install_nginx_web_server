@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 
+# Update package list and install nginx
 
 sudo apt-get update -y
 sudo apt-get install -y nginx
 
-
-sudo sed -i 's/\blisten\b.*/listen 80;/g' /etc/nginx/sites-available/default
-
-
-sudo /etc/init.d/nginx restart
+sudo /etc/init.d/nginx start
 
 
 echo "Hello World!" | sudo tee /var/www/html/index.html
