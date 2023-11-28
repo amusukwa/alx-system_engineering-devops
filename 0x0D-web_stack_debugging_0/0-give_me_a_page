@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Step 1: Run Apache Container
+docker run -p 8080:80 -d -it holbertonschool/265-0
+
+# Step 2: Check Running Containers
+docker ps
+
+# Step 3: Verify Port Mapping
+docker port <container_id>
+
+# Step 4: Check Apache Logs
+docker exec -it <container_id> cat /var/log/apache2/error.log
+
+# Step 5: Verify Apache Configuration
+docker exec -it <container_id> cat /etc/apache2/sites-enabled/000-default.conf
+
+# Step 6: Access Apache Container Shell
+docker exec -it <container_id> /bin/bash
+
+# Step 7: Check Apache Processes
+ps aux | grep apache2
+
+# Step 8: Verify Apache Service Status
+docker exec -it <container_id> service apache2 status
+
+# Step 9: Test Apache Response
+curl 0:8080
+
+# Step 10: Inspect Apache Configuration Files
+docker exec -it <container_id> ls /etc/apache2/sites-enabled/
+
+# Step 11: Check Apache Document Root
+docker exec -it <container_id> ls /var/www/html
+
+# Step 12: View Apache Configuration
+docker exec -it <container_id> cat /etc/apache2/apache2.conf
+
+# Step 13: Restart Apache Service
+docker exec -it <container_id> service apache2 restart
+
