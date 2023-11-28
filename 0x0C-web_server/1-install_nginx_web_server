@@ -13,6 +13,3 @@ sed -i 's/listen [::]:80 default_server;/listen 80;/g' /etc/nginx/sites-availabl
 
 cat <<EOF > /var/www/html/index.html
 Hello World!
-
-# Start Nginx
-service nginx restart
