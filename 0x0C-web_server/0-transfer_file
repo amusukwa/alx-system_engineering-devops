@@ -6,11 +6,12 @@ if [ "$#" -lt 4 ]; then
     exit 1
 fi
 
+# assign parameters to variables
 file_path=$1
 server_ip=$2
 username=$3
 ssh_key_path=$4
 
-SCP_OPTIONS=" -o StrictHostKeyChecking=no "
+SCP_OPTIONS="-o StrictHostKeyChecking=no "
 
 scp "$SCP_OPTIONS" -i "$ssh_key_path" "$file_path" "$username"@"$server_ip":~/
