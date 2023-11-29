@@ -6,20 +6,21 @@ exec { 'update':
   path => '/usr/bin',
 }
 
+
 package { 'nginx':
   ensure => installed,
   name => 'nginx',
   provider => 'apt',
 
 }
-
+# configure Nginx service
 service { 'nginx':
   ensure => running,
   enable => true,
   require => Package['nginx'],
 }
 
-
+# configure Nginx
 file { '/etc/nginx/sites-available/default':
   ensure  => present,
   content => "
