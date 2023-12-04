@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#Script to Install and configure HAproxy on your lb-01 server
 
 # Update the package repository
 sudo apt-get update
