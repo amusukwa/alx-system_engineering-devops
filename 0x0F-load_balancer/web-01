@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-ssh -i ~/.ssh/id_rsa ubuntu@100.26.171.8
+#connect to web-serv1
+
+ssh -i ~/.ssh/id_rsa ubuntu@54.173.33.118
