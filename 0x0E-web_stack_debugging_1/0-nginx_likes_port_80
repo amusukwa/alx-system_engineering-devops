@@ -4,6 +4,9 @@
 apt-get update
 apt-get install -y nginx
 
+# Remove existing default configuration
+rm /etc/nginx/sites-available/default
+
 # Configure Nginx to listen on port 80
 sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
 
