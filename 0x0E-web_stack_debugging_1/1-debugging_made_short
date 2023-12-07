@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # configures Nginx, to listen on port 80 of all the server’s active IPv4 IPs
-ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-# Restart Nginx to apply changes
-/etc/init.d/nginx restart
+sed -i 's/8080/80/g' /etc/nginx/sites_enabled/default
 # Terminates process
-kill "$(pgrep 'nginx' |head -l)"
+pkill -1 nginx
