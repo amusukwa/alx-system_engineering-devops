@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Function to display information about a subdomain
+display_info() {
+    local subdomain="$1"
+    local record_type="$2"
+    local destination="$3"
+    
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
+# Function to perform DNS lookup and display information
+audit_domain() {
+    local domain="$1"
+    local subdomain="$2"
+
+    # Subdomains to audit
+    subdomains=("www" "lb-01" "web-01" "web-02")
+
+    # If specific subdomain is provided, only audit that subdomain
+    if [ -n "$subdomain" ]; then
+        subdomains=("$subdomain")
+    fi
+
+    for sub in "${subdomains[@]}"; do
+        result=$(dig +short "$sub.$domain" | awk '{print $1}')
+
+        if [ -n "$result" ]; then
+            display_info "$sub" "A" "$result"
+        else
+            display_info "$sub" "CNAME" "$(dig +short "$sub.$domain" | awk '{print $1}')"
+        fi
+    done
+}
+
+# Check if the correct number of arguments is provided
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
+
+# Call the audit_domain function with provided arguments
+audit_domain "$1" "$2"
+
+
