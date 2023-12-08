@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# shortest scipt to edit listening port of server
-sed -i 's/8080/80/g' /etc/nginx/sites_enabled/default
-# Terminates process
-pkill -1 nginx
+# shortest script to edit listening port of the server
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+pkill -9 -f nginx

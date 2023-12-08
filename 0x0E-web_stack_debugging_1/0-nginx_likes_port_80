@@ -9,7 +9,7 @@ apt-get install -y nginx
 rm /etc/nginx/sites-enabled/default
 
 # Configure Nginx to listen on port 80
-ln -s  /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sed -i 's/8080/80/g' /etc/nginx/sites_enabled/default
 
 # Restart Nginx to apply changes
 service nginx restart
