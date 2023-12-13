@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+cat > /etc/haproxy/haproxy.cfg <<EOF
+
 defaults
         log     global
         mode    http
@@ -36,3 +40,7 @@ backend www-backend
         balance roundrobin
         server 407533-web-01 54.173.33.118:80
         server 407533-web-02 34.207.62.11:80
+EOF
+
+# Restart HAProxy
+service haproxy restart
