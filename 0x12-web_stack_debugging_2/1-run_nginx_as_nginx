@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Run Nginx as Nginx
+
+# Update Nginx configuration to run as nginx user
+sed -i 's/user\s*nginx;/user nginx;/' /etc/nginx/nginx.conf
+
+# Update Nginx default site configuration
+sed -i 's/listen\s*80;/listen 8080;/' /etc/nginx/sites-available/default
+
+# Restart Nginx service
+service nginx restart
