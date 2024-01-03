@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Script to fetch employee TODO list progress and export in CSV format."""
 
-import requests
 import csv
+import requests
 from sys import argv
 
 
@@ -21,19 +21,15 @@ def get_employee_todo_progress(employee_id):
         csv_filename = f"{employee_id}.csv"
 
         with open(csv_filename, mode="w", newline="") as csvfile:
-            fieldnames = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer = csv.writer(csvfile)
 
-            writer.writeheader()
             for task in todos_data:
-                writer.writerow({
-                    "USER_ID": user_data["id"],
-                    "USERNAME": user_data["username"],
-                    "TASK_COMPLETED_STATUS": task["completed"],
-                    "TASK_TITLE": task["title"]
-                })
-
-        print(f"CSV file '{csv_filename}' created successfully.")
+                writer.writerow([
+                    user_data["id"],
+                    user_data["username"],
+                    str(task["completed"]),
+                    task["title"]
+                ])
 
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
