@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Script to fetch employee TODO list progress and export in JSON format."""
 
-import requests
 import json
+import requests
 from sys import argv
 
 
@@ -21,7 +21,7 @@ def get_employee_todo_progress(employee_id):
         json_filename = f"{employee_id}.json"
 
         json_data = {
-            "USER_ID": [
+            str(user_data["id"]): [
                 {
                     "task": task["title"],
                     "completed": task["completed"],
@@ -33,8 +33,6 @@ def get_employee_todo_progress(employee_id):
 
         with open(json_filename, "w") as jsonfile:
             json.dump(json_data, jsonfile, indent=2)
-
-        print(f"JSON file '{json_filename}' created successfully.")
 
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
