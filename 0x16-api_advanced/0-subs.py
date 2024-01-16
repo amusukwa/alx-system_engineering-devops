@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """
-This script queries the Reddit API and returns the number of subscribers for a given subreddit.
+This script queries Reddit API and returns subscribers for a given subreddit.
 """
 
 import requests
+
 
 def number_of_subscribers(subreddit):
     """
@@ -15,7 +16,6 @@ def number_of_subscribers(subreddit):
     Returns:
         int: Number of subscribers if the subreddit is valid, 0 otherwise.
     """
-    
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {'User-Agent': 'MyRedditBot/1.0'}
 
@@ -39,9 +39,7 @@ def number_of_subscribers(subreddit):
         print(f"An error occurred: {e}")
         return 0
 
+
 if __name__ == "__main__":
-    # Example usage
     subreddit_name = "python"
     subscribers_count = number_of_subscribers(subreddit_name)
-    print(f"The subreddit '{subreddit_name}' has {subscribers_count} subscribers.")
-
