@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 import requests
 
+
 def count_words(subreddit, word_list, after=None, count_dict=None):
     """
-    Recursive function that queries the Reddit API, parses the title of all hot articles,
+    Recursive function querying Reddit API, parses title of all hot articles,
     and prints a sorted count of given keywords.
     """
     if count_dict is None:
@@ -15,8 +16,7 @@ def count_words(subreddit, word_list, after=None, count_dict=None):
         url = f'https://www.reddit.com/r/{subreddit}/hot.json?after={after}'
 
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        'User-Agent': 'Custom '
     }
     response = requests.get(url, headers=headers, allow_redirects=False)
 
@@ -39,11 +39,3 @@ def count_words(subreddit, word_list, after=None, count_dict=None):
     
     for word, count in sorted_counts:
         print(f'{word}: {count}')
-
-
-if __name__ == '__main__':
-    subreddit = input("Enter subreddit: ")
-    word_list = input("Enter space-separated keywords: ").split()
-    
-    count_words(subreddit, word_list)
-
