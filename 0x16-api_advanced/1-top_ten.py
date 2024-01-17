@@ -31,8 +31,3 @@ def top_ten(subreddit):
             print('Invalid JSON response.')
     else:
         print(None)
-
-
-if __name__ == '__main__':
-    subreddit = input('Enter subreddit: ')
-    top_ten(subreddit)
