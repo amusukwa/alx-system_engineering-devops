@@ -8,4 +8,6 @@
 exec { 'nginx-restart':
   command => '/bin/systemctl restart nginx',
   path    => '/bin',
+  refreshonly => true,
+  subscribe   => Exec['file-for-nginx'],
 }
