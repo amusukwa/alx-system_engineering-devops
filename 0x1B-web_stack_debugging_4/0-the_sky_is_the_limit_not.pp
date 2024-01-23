@@ -1,12 +1,11 @@
-
 # Update the configuration file for Nginx
-exec { 'file-for-nginx':
-  command => '/bin/sed -i "s/13/4096/" /etc/default/nginx',
+ exec { 'file-for-nginx':
+  command => '/bin/sed -i "s/15/4096/" /etc/default/nginx',
   path    => '/usr/local/bin:/bin',
+  onlyif  => '/usr/bin/test -f /etc/default/nginx',
 }
 
-# Restart Nginx after updating the configuration
 exec { 'nginx-restart':
-  command => '/etc/init.d/nginx restart',
-  path    => '/etc/init.d/',
+  command => '/bin/systemctl restart nginx',
+  path    => '/bin',
 }
